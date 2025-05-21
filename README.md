@@ -1,6 +1,6 @@
 # MAY_Labs
 MAY_Labs is a website where you can buy elements, chemicals and apparatus. This is a front end project with some backend too.
-Note: Website optimised for desktops only
+Note: Website not optimised for mobile devices
 
 1. install this repository in a folder
 2. open folder with vs code
