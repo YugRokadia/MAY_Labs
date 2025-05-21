@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MAY Labs||Login</title>
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+    <style>
+        /* General Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            background: #0d0d0d;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Particles Background */
+        #particles-js {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: #0d0d0d;
+            z-index: -1;
+        }
+
+        /* Login Box */
+        .login-container {
+            background: rgba(20, 20, 20, 0.8);
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 0 20px #c67dea;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        h2 {
+            color: #c67dea;
+            text-shadow: 0 0 10px #c67dea;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            margin: 12px 0;
+            border: 2px solid #c67dea;
+            background: black;
+            color: #c67dea;
+            font-size: 16px;
+            outline: none;
+            border-radius: 5px;
+            text-align: center;
+            box-shadow: 0 0 10px #c67dea;
+        }
+
+        input::placeholder {
+            color: #c67dea;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background: #c67dea;
+            color: black;
+            border: none;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 10px;
+            border-radius: 5px;
+            box-shadow: 0 0 15px #c67dea;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background: #c67dea;
+            box-shadow: 0 0 20px #c67dea;
+        }
+
+        #error-message {
+            color: red;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Particle Background -->
+    <div id="particles-js"></div>
+
+    <!-- Login Container -->
+    <div class="login-container">
+        <h2>MAY Labs Login</h2>
+        <form id="loginForm">
+            <input type="text" id="username" placeholder="Username" required>
+            <input type="password" id="password" placeholder="Password" required>
+            <button type="submit">Login</button>
+        </form>
+        <p id="error-message"></p>
+    </div>
+
+    <!-- Login Script -->
+    <script>
+        // Predefined users
+        const users = [
+            { username: "admin", password: "1234" },
+            { username: "john", password: "pass123" },
+            { username: "jane", password: "hello2024" },
+            { username: "mark", password: "securepwd" },
+            { username: "Yug Rokadia", password: "B100"},
+            { username: "Mahi", password: "B073"},
+            { username: "Advika", password: "B076"},
+
+        ];
+
+        document.getElementById("loginForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            const username = document.getElementById("username").value;
+            const password = document.getElementById("password").value;
+
+            const validUser = users.find(user => user.username === username && user.password === password);
+
+            if (validUser) {
+                alert("Login Successful!");
+                window.location.href = "index.html";
+            } else {
+                document.getElementById("error-message").textContent = "Invalid username or password!";
+            }
+        });
+
+        // Particle.js Config
+        particlesJS('particles-js', {
+            "particles": {
+                "number": {
+                    "value": 100,
+                    "density": {
+                        "enable": true,
+                        "value_area": 800
+                    }
+                },
+                "color": {
+                    "value": "#FF00FF"
+                },
+                "shape": {
+                    "type": "circle",
+                    "stroke": {
+                        "width": 3,
+                        "color": "hsl(280, 72%, 48%)"
+                    }
+                },
+                "opacity": {
+                    "value": 0.5,
+                    "random": true,
+                    "anim": {
+                        "enable": true,
+                        "speed": 1,
+                        "opacity_min": 0.1
+                    }
+                },
+                "size": {
+                    "value": 10,
+                    "random": true,
+                    "anim": {
+                        "enable": true,
+                        "speed": 2,
+                        "size_min": 0.1
+                    }
+                },
+                "line_linked": {
+                    "enable": true,
+                    "distance": 150,
+                    "color": "#39FF14",
+                    "opacity": 0.4,
+                    "width": 3
+                },
+                "move": {
+                    "enable": true,
+                    "speed": 3,
+                    "direction": "random",
+                    "random": true,
+                    "straight": false,
+                    "out_mode": "out",
+                    "bounce": true,
+                    "attract": {
+                        "enable": false
+                    }
+                }
+            },
+            "interactivity": {
+                "detect_on": "canvas",
+                "events": {
+                    "onhover": {
+                        "enable": false,
+                        "mode": "bubble"
+                    },
+                    "onclick": {
+                        "enable": false,
+                        "mode": "push"
+                    }
+                }
+            },
+            "retina_detect": true
+        });
+
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+            behavior: 'smooth'
+        });
+    });
+});
+    </script>
+
+</body>
+</html>

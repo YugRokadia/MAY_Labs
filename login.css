@@ -1,0 +1,85 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Background Particle Effect */
+#particles-js {
+    position: absolute;
+    width: 100%;
+    height: 100vh;
+    background: #0a0a0a; /* Deep dark */
+}
+
+/* Centered Login Box */
+.login-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 350px;
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.6);
+    border-radius: 10px;
+    box-shadow: 0 0 20px #c67dea;
+    text-align: center;
+}
+
+/* Heading */
+.login-container h2 {
+    color: #c67dea;
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+/* Inputs */
+.login-container input {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    background: transparent;
+    border: 2px solid #c67dea;
+    outline: none;
+    color: #fff;
+    font-size: 16px;
+    border-radius: 5px;
+    text-align: center;
+}
+
+/* Login Button */
+.login-container button {
+    width: 100%;
+    padding: 12px;
+    background: #c67dea;
+    color: black;
+    font-size: 18px;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    transition: 0.3s;
+    border-radius: 5px;
+}
+
+.login-container button:hover {
+    background: #6b2e8a;
+    box-shadow: 0 0 10px #c67dea, 0 0 40px #c67dea;
+}
+
+/* Signup Link */
+.login-container p {
+    margin-top: 10px;
+    color: #ccc;
+}
+
+.login-container a {
+    color: #c67dea;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.login-container a:hover {
+    text-shadow: 0 0 5px #c67dea;
+}

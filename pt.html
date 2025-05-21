@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
+    <link rel="icon" type="image/png" href="/images/image-removebg-preview.png">
+    <title>MAY Labs || Interactive Periodic Table</title>
+    <style>
+        #particles-js {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+        body {
+            background-color: #1e1e1e;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-family: Arial, sans-serif;
+        }
+        .table-container {
+            display: grid;
+            grid-template-columns: repeat(18, 1fr);
+            gap: 8px;
+            margin-top: 20px;
+            position: relative;
+        }
+        .element {
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid white;
+            position: relative;
+            cursor: pointer;
+            transition: transform 0.2s;
+            text-align: center;
+            font-size: 14px;
+            font-weight: bold;
+        }
+        .element:hover {
+            transform: scale(1.2);
+            background-color: #444;
+            z-index: 10;
+        }
+        .element .info {
+            display: none;
+            position: absolute;
+            bottom: 60px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: rgba(0, 0, 0, 0.9);
+            padding: 8px;
+            border-radius: 5px;
+            text-align: center;
+            white-space: nowrap;
+            z-index: 20;
+            font-size: 12px;
+            width: 120px;
+            box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.2);
+        }
+        .element:hover .info {
+            display: block;
+        }
+        .gap {
+            width: 50px;
+            height: 50px;
+        }
+
+        /* Color coding for different element categories */
+        .metal { background-color: #ff5733; }
+        .nonmetal { background-color: #33ff57; }
+        .metalloid { background-color: #ff33ff; }
+        .noble-gas { background-color: #33aaff; }
+        .alkali-metal { background-color: #ffcc00; }
+        .earth-metal { background-color: #ff9966; }
+        .t-metal { background-color: #9999ff; }
+        .lanthanide { background-color: #cc66ff; }
+        .actinide { background-color: #ff6666; }
+        .halogen { background-color: blueviolet; }
+        .unknown { background-color: #777; }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            justify-content: left;
+            padding: 10px 20px;
+        }
+
+        .logo {
+            margin: 0;
+            text-align: left;
+        }
+
+        .title {
+            margin: 0 auto;
+            text-align: left;
+            flex-grow: 1;
+        }
+    </style>
+</head>
+<body>
+    <div id="particles-js"></div>
+    <header>
+        <a href="index.html"><img src="/images/image-removebg-preview.png" width="60px"></a>
+        <a><h1>MAY LABS</h1></a>
+    </header>
+
+    <audio id="hoverSound" src="/sounds/tuk.mp3" preload="auto"></audio>
+
+    <div class="table-container" id="periodicTable"></div>
+
+    <script>
+        fetch('http://localhost:3000/api/elements')
+            .then(response => response.json())
+            .then(elements => {
+                const tableContainer = document.getElementById("periodicTable");
+
+                elements.forEach(el => {
+                    if (!el.symbol || !el.atomic_number) return;
+
+                    const atomicMass = el.atomic_mass ? el.atomic_mass.toFixed(2) : "N/A";
+                    let categoryClass = "unknown";
+
+                    try {
+                        if (el.category) {
+                            categoryClass = el.category.toLowerCase().replace(/\s+/g, '-');
+                        }
+                    } catch (error) {
+                        console.warn("Error processing category for:", el);
+                    }
+
+                    const elementDiv = document.createElement("div");
+                    elementDiv.classList.add("element", categoryClass);
+                    elementDiv.style.gridColumnStart = el.position_x;
+                    elementDiv.style.gridRowStart = el.position_y;
+                    elementDiv.innerHTML = `
+                        <strong>${el.symbol}</strong>
+                        <div class="info">
+                            <p>${el.name}</p>
+                            <p>Atomic No: ${el.atomic_number}</p>
+                            <p>Atomic Mass: ${atomicMass}</p>
+                            <p>Category: ${el.category || 'Unknown'}</p>
+                        </div>
+                    `;
+
+                    // ▶ hover sound
+                    elementDiv.addEventListener('mouseenter', () => {
+                        const sound = document.getElementById("hoverSound");
+                        sound.currentTime = 0;
+                        sound.play();
+                    });
+
+                    tableContainer.appendChild(elementDiv);
+
+                    if (el.symbol === "Ba") {
+                        let gapDiv = document.createElement("div");
+                        gapDiv.classList.add("gap");
+                        gapDiv.style.gridColumnStart = el.position_x + 1;
+                        tableContainer.appendChild(gapDiv);
+                    }
+                });
+            })
+            .catch(error => console.error('Error loading elements:', error));
+
+        particlesJS('particles-js', {
+            "particles": {
+                "number": {
+                    "value": 100,
+                    "density": {
+                        "enable": true,
+                        "value_area": 800
+                    }
+                },
+                "color": {
+                    "value": "#FF00FF"
+                },
+                "shape": {
+                    "type": "circle",
+                    "stroke": {
+                        "width": 3,
+                        "color": "hsl(280, 72%, 48%)"
+                    }
+                },
+                "opacity": {
+                    "value": 0.5,
+                    "random": true,
+                    "anim": {
+                        "enable": true,
+                        "speed": 1,
+                        "opacity_min": 0.1
+                    }
+                },
+                "size": {
+                    "value": 10,
+                    "random": true,
+                    "anim": {
+                        "enable": true,
+                        "speed": 2,
+                        "size_min": 0.1
+                    }
+                },
+                "line_linked": {
+                    "enable": true,
+                    "distance": 150,
+                    "color": "#39FF14",
+                    "opacity": 0.4,
+                    "width": 3
+                },
+                "move": {
+                    "enable": true,
+                    "speed": 3,
+                    "direction": "random",
+                    "random": true,
+                    "straight": false,
+                    "out_mode": "out",
+                    "bounce": true,
+                    "attract": {
+                        "enable": false
+                    }
+                }
+            },
+            "interactivity": {
+                "detect_on": "canvas",
+                "events": {
+                    "onhover": {
+                        "enable": false,
+                        "mode": "bubble"
+                    },
+                    "onclick": {
+                        "enable": false,
+                        "mode": "push"
+                    }
+                }
+            },
+            "retina_detect": true
+        });
+    </script>
+</body>
+</html>

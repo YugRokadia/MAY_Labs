@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="/images/image-removebg-preview.png">
+    <title>MAY Labs</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
+    <script src="scripts.js" defer></script>
+    <style>
+        header {
+    display: flex;
+    align-items: center;  
+    justify-content: flex-start;  
+    padding: 5px; 
+    color: white;
+}
+
+header img {
+    height: 50px;  /* Adjust the height as needed */
+    width: auto;  /* Maintain aspect ratio */
+    margin-right: 10px;  /* Adds space between the image and the text */
+}
+
+header h1 {
+    font-size: 24px;
+    margin: 0;
+}
+
+    </style>
+</head>
+
+<body>
+    <!-- Particles Background -->
+    <div id="particles-js"></div>
+
+    <!-- Header -->
+    <header>
+        <a href="index.html"><img src="/images/image-removebg-preview.png"></a>
+        <a href="index.html"></a><h1>MAY Labs</h1></a>
+        <!-- Modal -->
+<div id="auth-modal" class="login-modal">
+    <div class="login-card">
+      <span class="close-btn">&times;</span>
+  
+      <!-- Toggle Buttons -->
+      <div class="tab-buttons">
+        <button id="login-tab" class="tab active">Login</button>
+        <button id="signup-tab" class="tab">Sign Up</button>
+      </div>
+  
+      <!-- Login Form -->
+      <form id="loginForm" class="auth-form">
+        <h2>Login</h2>
+        <input type="text" id="login-username" placeholder="Username" required>
+        <input type="password" id="login-password" placeholder="Password" required>
+        <button type="submit">Login</button>
+        <p id="login-error" class="error-msg"></p>
+      </form>
+  
+      <!-- Signup Form -->
+      <form id="signupForm" class="auth-form" style="display: none;">
+        <h2>Sign Up</h2>
+        <input type="text" id="signup-username" placeholder="Choose a Username" required>
+        <input type="password" id="signup-password" placeholder="Create a Password" required>
+        <button type="submit">Sign Up</button>
+        <p id="signup-error" class="error-msg"></p>
+      </form>
+    </div>
+  </div>
+  
+  <!-- Open Button -->
+  <button id="auth-open-btn" class="login-btn">Login / Sign Up</button>
+  
+    </header>    <!-- Navigation Buttons -->
+    <hr color="white">
+    <div class="button-container">
+        <a href="shop.html" class="nav-button">Visit Shop</a>
+        <a href="pt.html" class="nav-button">Periodic Table</a>
+    </div>
+    <div class="button-container">
+    <a href="about.html" class="nav-button">ABOUT US</a>
+    </div>
+
+    <br>
+    <br>
+    <br>
+
+    <div class="testimonials-container">
+        <button class="scroll-btn left-btn">&#9665;</button> 
+        <div class="testimonials-wrapper">
+            <div class="testimonials">
+                <div class="testimonial">"Amazing service! Will buy again." -- Linda</div>
+                <div class="testimonial">"Great quality, fast shipping!" -- Piyush</div>
+                <div class="testimonial">"Fantastic customer support. Highly recommend!" -- Anuradha</div>
+                <div class="testimonial">"Loved the products, exceeded expectations!" - Goyal</div>
+                <div class="testimonial">"Best purchase I've made this year!"</div>
+                <div class="testimonial">"Amazing service! Will buy again."</div>
+                <div class="testimonial">"Great quality, fast shipping!"</div>
+                <div class="testimonial">"Fantastic customer support. Highly recommend!"</div>
+                <div class="testimonial">"Loved the products, exceeded expectations!"</div>
+                <div class="testimonial">"Best purchase I've made this year!"</div>
+                <div class="testimonial">"Amazing service! Will buy again."</div>
+                <div class="testimonial">"Great quality, fast shipping!"</div>
+                <div class="testimonial">"Fantastic customer support. Highly recommend!"</div>
+                <div class="testimonial">"Loved the products, exceeded expectations!"</div>
+                <div class="testimonial">"Best purchase I've made this year!"</div>
+                <div class="testimonial">"Amazing service! Will buy again."</div>
+                <div class="testimonial">"Great quality, fast shipping!"</div>
+                <div class="testimonial">"Fantastic customer support. Highly recommend!"</div>
+                <div class="testimonial">"Loved the products, exceeded expectations!"</div>
+                <div class="testimonial">"Best purchase I've made this year!"</div>
+            </div>
+        </div>
+        <button class="scroll-btn right-btn">&#9655;</button> 
+    </div>
+    
+
+    
+    <!-- Footer -->
+    <footer>
+        <p style="color: #c67dea;">&copy; 2025 MAY Chemicals. Made using ☕.</p>
+    </footer>
+
+</body>
+</html>
